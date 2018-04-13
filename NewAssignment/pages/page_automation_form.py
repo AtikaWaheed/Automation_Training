@@ -58,13 +58,13 @@ class GoogleFormSubmission(object):
         )
         return all_headings
 
-    def error_with_empty(self, id):
+    def error_with_empty(self, ind):
         return self.driver.find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
-            id].find_element_by_css_selector('.freebirdFormviewerViewItemsItemErrorMessage').text
+            ind].find_element_by_css_selector('.freebirdFormviewerViewItemsItemErrorMessage').text
 
-    def error_with_wrong_value(self, id):
+    def error_with_wrong_value(self, ind):
         value = self.driver.find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
-            id].find_element_by_css_selector('.quantumWizTextinputPaperinputInputArea > input')
+            ind].find_element_by_css_selector('.quantumWizTextinputPaperinputInputArea > input')
         value.send_keys('@')
 
     def enter_correct_values(self, **kwargs):
@@ -78,14 +78,6 @@ class GoogleFormSubmission(object):
             EC.presence_of_element_located(
                 (By.CSS_SELECTOR, '.freebirdFormviewerViewNavigationPercentComplete'))
         ).text
-
-    """def firebug_selenium(self, **kwargs):
-        self.driver.find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
-            kwargs.get('id')].find_element_by_css_selector('[data-value="Inspecting Elements"]').click()
-
-    def type_of_locator(self, **kwargs):
-        self.driver.find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
-            kwargs.get('id')].find_element_by_css_selector('[data-value="Password"]').click()"""
 
     def locator_and_firebug(self, **kwargs):
         """
@@ -130,7 +122,7 @@ class GoogleFormSubmission(object):
         time.sleep(4)
         self.driver.switch_to.default_content()
 
-    def scale_numbr(self, **kwargs):
+    def scale_ranking(self, **kwargs):
         self.driver.find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
             kwargs.get('id')].find_elements_by_css_selector('.quantumWizTogglePaperradioOffRadio.exportOuterCircle')[2].click()
 
@@ -163,7 +155,6 @@ class GoogleFormSubmission(object):
 
     def view_score(self):
         self.driver.find_element_by_css_selector(".quantumWizButtonPaperbuttonLabel.exportLabel").click()
-        time.sleep(2)
         window = self.driver.window_handles[-1]
         self.driver.switch_to.window(window)
 
@@ -176,7 +167,7 @@ class GoogleFormSubmission(object):
             count].find_element_by_css_selector('.freebirdFormviewerViewItemsItemItemTitle').text
         return txt
 
-    def correct_input(self, ind, count):
+    def correct_answers(self, ind, count):
         return self.driver.find_elements_by_css_selector(".freebirdFormviewerViewItemList")[
             ind].find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
             count].find_elements_by_css_selector('.freebirdFormviewerViewItemsItemGradingGradingBox .docssharedWizToggleLabeledPrimaryText > span')
@@ -189,34 +180,21 @@ class GoogleFormSubmission(object):
     def first_uncheck_all_options(self, ind):
         checked_options = self.driver.find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
             ind].find_elements_by_css_selector('.isChecked[aria-checked="true"]')
-        print 'length of checked' + str(len(checked_options))
         for option in checked_options:
             option.click()
-            time.sleep(2)
+            time.sleep(1)
 
-    def correct_inputs(self, ind, values):
+    def correct_input_from_csv(self, ind, values):
         self.driver.find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
             ind].find_element_by_css_selector('.docssharedWizToggleLabeledControl[aria-label="{hard_cord}"]'.format
                                                        (hard_cord=values)).click()
 
-    def multiple_inputs(self, values):
+    def multiple_inputs_from_csv(self, values):
         self.driver.find_element_by_css_selector('.freebirdFormviewerViewItemList [aria-label="{hard_cord}"][aria-checked="false"]'.format
                                                  (hard_cord=values)).click()
 
-    def view_submit_form(self):
+    def view_submitted_form(self):
         self.driver.find_element_by_css_selector(".quantumWizButtonPaperbuttonLabel.exportLabel").click()
         time.sleep(2)
         window = self.driver.window_handles[-2]
         self.driver.switch_to.window(window)
-
-
-
-
-
-
-
-
-
-
-
-
