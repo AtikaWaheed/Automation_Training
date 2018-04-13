@@ -1,0 +1,7 @@
+*.pyc
+
+.xml
+
+.idea/
+
+*.log
