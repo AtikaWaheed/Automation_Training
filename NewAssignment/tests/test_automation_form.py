@@ -7,63 +7,63 @@ import csv
 
 dict = {
         'CNIC': {'correct_input': 'enter_correct_values', 'wrong_pattern_error': 'Must match pattern',
-                 'empty_error': 'This is a required question', 'func_to_call_for_wrong_char': 'error_with_wrong_value',
-                 'func_to_call_for_empty_field': 'error_with_empty',
-                 'value_as_an_arg': '3333333333333'},
+                 'empty_error': 'This is a required question', 'func_to_call_for_wrong_character': 'error_with_wrong_value',
+                 'func_to_call_for_empty_field': 'error_with_empty_field',
+                 'value_as_an_argument': '3333333333333'},
         'Phone_Number': {'correct_input': 'enter_correct_values', 'wrong_pattern_error': 'Must match pattern',
-                         'func_to_call_for_wrong_char': 'error_with_wrong_value',
+                         'func_to_call_for_wrong_character': 'error_with_wrong_value',
                          'empty_error': 'This is a required question',
-                         'func_to_call_for_empty_field': 'error_with_empty', 'value_as_an_arg': '33333333333'},
+                         'func_to_call_for_empty_field': 'error_with_empty_field', 'value_as_an_argument': '33333333333'},
         'Name': {'correct_input': 'enter_correct_values', 'empty_error': 'This is a required question',
-                 'func_to_call_for_empty_field': 'error_with_empty',
-                 'value_as_an_arg': 'Atika'},
+                 'func_to_call_for_empty_field': 'error_with_empty_field',
+                 'value_as_an_argument': 'Atika'},
         'Email': {'correct_input': 'enter_correct_values', 'wrong_pattern_error': 'Must be a valid email address',
-                  'empty_error': 'This is a required question', 'func_to_call_for_wrong_char': 'error_with_wrong_value',
-                  'func_to_call_for_empty_field': 'error_with_empty', 'value_as_an_arg': 'a@a.com'},
-        'Select_the_name_which_is_NOT_a_type_of_the_locater': {'func_to_call_for_empty_field': 'error_with_empty',
+                  'empty_error': 'This is a required question', 'func_to_call_for_wrong_character': 'error_with_wrong_value',
+                  'func_to_call_for_empty_field': 'error_with_empty_field', 'value_as_an_argument': 'a@a.com'},
+        'Select_the_name_which_is_NOT_a_type_of_the_locater': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                                                'empty_error': 'This is a required question',
                                                                'correct_input': 'locator_and_firebug',
-                                                               'value_as_an_arg': 'ID'},
-        'Use_of_Firebug_in_Selenium': {'func_to_call_for_empty_field': 'error_with_empty',
+                                                               'value_as_an_argument': 'ID'},
+        'Use_of_Firebug_in_Selenium': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                        'empty_error': 'This is a required question',
                                        'correct_input': 'locator_and_firebug',
-                                       'value_as_an_arg': 'Programming'},
-        'Select_the_correct_answers': {'func_to_call_for_empty_field': 'error_with_empty',
+                                       'value_as_an_argument': 'Programming'},
+        'Select_the_correct_answers': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                        'empty_error': 'This is a required question',
                                        'correct_input': 'choose_answers'},
-        'Select_the_two_numbers_that_are_not_prime.': {'func_to_call_for_empty_field': 'error_with_empty',
+        'Select_the_two_numbers_that_are_not_prime.': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                                        'empty_error': 'This is a required question',
                                                        'correct_input': 'choose_answers'},
-        'Capital_of_Pakistan': {'func_to_call_for_empty_field': 'error_with_empty',
+        'Capital_of_Pakistan': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                 'empty_error': 'This is a required question',
                                 'correct_input': 'capital_answers'},
-        'Capital_of_Punjab': {'func_to_call_for_empty_field': 'error_with_empty',
+        'Capital_of_Punjab': {'func_to_call_for_empty_field': 'error_with_empty_field',
                               'empty_error': 'This is a required question',
                               'correct_input': 'capital_answers'},
-        'Upload_pdf_file': {'func_to_call_for_empty_field': 'error_with_empty',
+        'Upload_pdf_file': {'func_to_call_for_empty_field': 'error_with_empty_field',
                             'empty_error': 'This is a required question',
                             'correct_input': 'upload_files'},
-        'Upload_Image_File': {'func_to_call_for_empty_field': 'error_with_empty',
+        'Upload_Image_File': {'func_to_call_for_empty_field': 'error_with_empty_field',
                               'empty_error': 'This is a required question',
                               'correct_input': 'upload_files'},
-        'On_a_scale_of_1_to_five_how_hard_this_assignment_is': {'func_to_call_for_empty_field': 'error_with_empty',
+        'On_a_scale_of_1_to_five_how_hard_this_assignment_is': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                                                 'empty_error': 'This is a required question',
                                                                 'correct_input': 'scale_ranking'},
-        'How_satisfied_are_you_with_the_following': {'func_to_call_for_empty_field': 'error_with_empty',
+        'How_satisfied_are_you_with_the_following': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                                      'empty_error': 'This question requires one response per row',
                                                      'correct_input': 'choice_grid'},
-        'Select_your_proficiency_in_following': {'func_to_call_for_empty_field': 'error_with_empty',
+        'Select_your_proficiency_in_following': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                                  'empty_error': 'This question requires at least one response per row',
                                                  'correct_input': 'choice_grid'},
-        'Enter_Current_time': {'func_to_call_for_empty_field': 'error_with_empty',
+        'Enter_Current_time': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                'empty_error': 'This is a required question',
-                               'correct_input': 'enter_time', 'value_as_an_arg': '05', 'value_as_an_arg1': '45',
-                               'func_to_call_for_wrong_char': 'error_with_wrong_value',
+                               'correct_input': 'enter_time', 'value_as_an_argument': '05', 'value_as_an_argument1': '45',
+                               'func_to_call_for_wrong_character': 'error_with_wrong_value',
                                'wrong_pattern_error': 'Invalid time'},
-        'Enter_Current_date': {'func_to_call_for_empty_field': 'error_with_empty',
+        'Enter_Current_date': {'func_to_call_for_empty_field': 'error_with_empty_field',
                                'empty_error': 'This is a required question',
-                               'correct_input': 'enter_date', 'value_as_an_arg': '03', 'value_as_an_arg1': '25',
-                               'func_to_call_for_wrong_char': 'error_with_wrong_value',
+                               'correct_input': 'enter_date', 'value_as_an_argument': '03', 'value_as_an_argument1': '25',
+                               'func_to_call_for_wrong_character': 'error_with_wrong_value',
                                'wrong_pattern_error': 'Invalid date'}
         }
 
@@ -105,13 +105,13 @@ class TestGoogleForm(unittest.TestCase):
                 self.google_page.click_next_button()
                 required_error = getattr(self.google_page, dict.get(key).get('func_to_call_for_empty_field'))(ind)
                 self.assertEqual(required_error, dict.get(key).get('empty_error'))
-                if dict.get(key). has_key('func_to_call_for_wrong_char'):
-                    getattr(self.google_page, dict.get(key).get('func_to_call_for_wrong_char'))(ind)
-                call1 = getattr(self.google_page, dict.get(key).get('correct_input'))
-                call1(id=ind, values=dict.get(key).get('value_as_an_arg'), value1=dict.get(key).get('value_as_an_arg1'))
+                if dict.get(key). has_key('func_to_call_for_wrong_character'):
+                    getattr(self.google_page, dict.get(key).get('func_to_call_for_wrong_character'))(ind)
+                wrong_character_error = getattr(self.google_page, dict.get(key).get('correct_input'))
+                wrong_character_error(id=ind, values=dict.get(key).get('value_as_an_argument'), value1=dict.get(key).get('value_as_an_argument1'))
             self.google_page.click_next_button()
-        confirm_mes = self.google_page.confirmation_message()
-        self.assertEqual(confirm_mes, 'Your response has been recorded.')
+        confirm_message = self.google_page.confirmation_message()
+        self.assertEqual(confirm_message, 'Your response has been recorded.')
         """
         View submitted form's score
         """
@@ -123,21 +123,21 @@ class TestGoogleForm(unittest.TestCase):
         total_score_get.split()
         print "Got " + total_score_get[0] + total_score_get[1] + " points out of 40"
         """
-        writing correct answers in output csv
+        writing correct answers in output csv from final result page
         """
         my_file = open("output.csv", "w")
         for number in range(1, 4):
-            for nmb in range(2):
-                title = self.google_page.grading_question_list(number, nmb)
-                answr_list = self.google_page.correct_answers(number, nmb)
-                if len(answr_list) != 0:
+            for index in range(2):
+                title = self.google_page.grading_question_list(number, index)
+                answer_list = self.google_page.correct_answers(number, index)
+                if len(answer_list) != 0:
                     my_file.write('Q: ' + str(title) + "\n")
-                    for item in answr_list:
+                    for item in answer_list:
                         my_file.write(str(item.text) + "\n")
         self.google_page.edit_response()
         self.google_page.click_next_button()
         """
-        Read each question from csv and put correct input 
+        Read each question from csv and put correct inputs
         """
         my_file = 'output.csv'
         with open(my_file, 'r') as f:

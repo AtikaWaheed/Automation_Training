@@ -58,7 +58,7 @@ class GoogleFormSubmission(object):
         )
         return all_headings
 
-    def error_with_empty(self, ind):
+    def error_with_empty_field(self, ind):
         return self.driver.find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
             ind].find_element_by_css_selector('.freebirdFormviewerViewItemsItemErrorMessage').text
 
