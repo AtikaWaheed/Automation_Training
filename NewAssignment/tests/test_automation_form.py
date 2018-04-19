@@ -122,45 +122,53 @@ class TestGoogleForm(unittest.TestCase):
         total_score_get = self.google_page.total_score()
         total_score_get.split()
         print "Got " + total_score_get[0] + total_score_get[1] + " points out of 40"
-        """
-        writing correct answers in output csv from final result page
-        """
-        my_file = open("output.csv", "w")
-        for number in range(1, 4):
-            for index in range(2):
-                title = self.google_page.grading_question_list(number, index)
-                answer_list = self.google_page.correct_answers(number, index)
-                if len(answer_list) != 0:
-                    my_file.write('Q: ' + str(title) + "\n")
-                    for item in answer_list:
-                        my_file.write(str(item.text) + "\n")
-        self.google_page.edit_response()
-        self.google_page.click_next_button()
-        """
-        Read each question from csv and put correct inputs
-        """
-        my_file = 'output.csv'
-        with open(my_file, 'r') as f:
-            csv_reader = csv.reader(f)
-            for row in csv_reader:
-                if row[0].startswith('Q:'):
-                    question = row[0].replace('Q: ', '')
-                    question_found = False
-                    for number in range(2):
-                        all_headings = self.google_page.questions_headings()
-                        for ind, title in enumerate(all_headings):
-                            if title.text == question:
-                                next_answer = next(csv_reader)
-                                self.google_page.first_uncheck_all_options(ind)
-                                self.google_page.correct_input_from_csv(ind, next_answer[0])
-                                question_found = True
+
+        def write_all_correct_inputs_in_csv():
+            """
+            writing correct answers in output csv from final result page
+            """
+            my_file = open("output.csv", "w")
+            for number in range(1, 4):
+                for index in range(2):
+                    title = self.google_page.grading_question_list(number, index)
+                    answer_list = self.google_page.correct_answers(number, index)
+                    if len(answer_list) != 0:
+                        my_file.write('Q: ' + str(title) + "\n")
+                        for item in answer_list:
+                            my_file.write(str(item.text) + "\n")
+            self.google_page.edit_response()
+            self.google_page.click_next_button()
+            return my_file
+        write_all_correct_inputs_in_csv()
+
+        def reading_and_putting_correct_answers():
+            """
+            Read each question from csv and put correct inputs
+            """
+            my_file = 'output.csv'
+            with open(my_file, 'r') as f:
+                csv_reader = csv.reader(f)
+                for row in csv_reader:
+                    if row[0].startswith('Q:'):
+                        question = row[0].replace('Q: ', '')
+                        question_found = False
+                        for number in range(2):
+                            headings = self.google_page.questions_headings()
+                            for ind, title in enumerate(headings):
+                                if title.text == question:
+                                    next_answer = next(csv_reader)
+                                    self.google_page.first_uncheck_all_options(ind)
+                                    self.google_page.correct_input_from_csv(ind, next_answer[0])
+                                    question_found = True
+                                    break
+                            if question_found:
                                 break
-                        if question_found:
-                            break
-                        else:
-                            self.google_page.click_next_button()
-                else:
-                    self.google_page.multiple_inputs_from_csv(row[0])
+                            else:
+                                self.google_page.click_next_button()
+                    else:
+                        self.google_page.multiple_inputs_from_csv(row[0])
+            return my_file
+        reading_and_putting_correct_answers()
         """
         Click next until you reach last page to resubmit form
         """
