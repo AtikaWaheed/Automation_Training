@@ -24,9 +24,9 @@ class GoogleFormSubmission(object):
             EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type="email"]'))
         )
         user.send_keys(username)
-        time.sleep(5)
+        time.sleep(3)
         user.send_keys(Keys.RETURN)
-        time.sleep(5)
+        time.sleep(3)
         passcode = WebDriverWait(self.driver, self.time_to_wait).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type="password"]'))
         )
@@ -140,6 +140,10 @@ class GoogleFormSubmission(object):
         self.driver.find_element_by_css_selector("input[aria-label='Day of the month']").send_keys(kwargs.get('value1'))
 
     def enter_time(self, **kwargs):
+        """
+        hr stands for hours
+        mn stands for minutes
+        """
         hr = self.driver.find_element_by_css_selector("input[aria-label='Hour']")
         hr.send_keys(Keys.BACKSPACE)
         hr.send_keys(kwargs.get('values'))
@@ -155,6 +159,7 @@ class GoogleFormSubmission(object):
 
     def view_score(self):
         self.driver.find_element_by_css_selector(".quantumWizButtonPaperbuttonLabel.exportLabel").click()
+        time.sleep(2)
         window = self.driver.window_handles[-1]
         self.driver.switch_to.window(window)
 
@@ -162,10 +167,10 @@ class GoogleFormSubmission(object):
         return self.driver.find_element_by_css_selector(".freebirdFormviewerViewHeaderGradeFraction").text
 
     def grading_question_list(self, ind, count):
-        txt = self.driver.find_elements_by_css_selector(".freebirdFormviewerViewItemList")[
+        text = self.driver.find_elements_by_css_selector(".freebirdFormviewerViewItemList")[
             ind].find_elements_by_css_selector('.freebirdFormviewerViewItemsItemItem')[
             count].find_element_by_css_selector('.freebirdFormviewerViewItemsItemItemTitle').text
-        return txt
+        return text
 
     def correct_answers(self, ind, count):
         return self.driver.find_elements_by_css_selector(".freebirdFormviewerViewItemList")[
